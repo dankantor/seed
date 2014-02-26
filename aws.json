@@ -1,0 +1,5 @@
+{
+  "key": "", // aws key
+  "secret": "", // aws secret
+  "bucket": "" // aws bucket to deploy to
+}
