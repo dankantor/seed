@@ -4,7 +4,7 @@ Seed files for a client-side web app. Jquery, Backbone and Underscore included. 
 
 ## Installation
 
-* Clone or fork this repo
+* fork this repo
 * npm install
 * gulp build
 
