@@ -4,7 +4,7 @@ Seed files for a client-side web app. Jquery, Backbone and Underscore included. 
 
 ## Installation
 
-1. fork this repo ([how-to fork](https://help.github.com/articles/fork-a-repo))
+1. fork this repo ([how-to fork](https://help.github.com/articles/fork-a-repo)) or duplicate it ([how-to duplicate](https://help.github.com/articles/duplicating-a-repository))
 2. npm install
 3. gulp build
 
