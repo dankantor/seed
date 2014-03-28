@@ -7,6 +7,7 @@ var imagemin = require('gulp-imagemin');
 var htmlmin = require('gulp-htmlmin');
 var fs = require('fs');
 var awspublish = require('gulp-awspublish');
+var notify = require("gulp-notify");
 
 
 // browserify js and template files
@@ -20,10 +21,14 @@ gulp.task('browserify', function() {
                 'debug': gutil.env.production,
                 'transform': ['hbsfy']
             })
+            .on('error', notify.onError(
+                function (error) {
+                    return error.message;
+                }
+            ))
         )
         .pipe(gulp.dest('./build/js'))
 });
-
 
 // convert less files to css
 // only need index file
@@ -112,7 +117,6 @@ gulp.task('watch', function () {
 
 //todo
 // partials on templates
-// handlebars helpers
 // dev vs prod for uglifying, source maps, banners
 // build html5 manifest file
 
