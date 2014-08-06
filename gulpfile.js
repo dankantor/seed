@@ -8,6 +8,7 @@ var htmlmin = require('gulp-htmlmin');
 var fs = require('fs');
 var awspublish = require('gulp-awspublish');
 var notify = require("gulp-notify");
+var jade = require('gulp-jade');
 
 
 // browserify js and template files
@@ -68,6 +69,18 @@ gulp.task('fontcopy', function () {
     
 });
 
+// build jade into html
+// put in build folder
+gulp.task('jade', function() {
+    gulp.src('./src/jade/*.jade')
+        .pipe(jade({
+            locals: {
+                "project": gutil.env.project
+            }
+        }))
+        .pipe(gulp.dest('./build/'))
+});
+
 // deploy to S3 bucket
 gulp.task('deploy', function () {
     var aws = JSON.parse(fs.readFileSync('./aws.json'));
@@ -85,7 +98,7 @@ gulp.task('build',
         'browserify',
         'less',
         'imagemin',
-        'htmlmin',
+        'jade',
         'fontcopy'
     ]
 );
@@ -98,7 +111,7 @@ gulp.task('watch', function () {
     gulp.watch('src/templates/**', ['browserify']);
     gulp.watch('src/less/**', ['less']);
     gulp.watch('src/images/**', ['imagemin']);
-    gulp.watch('src/*.html', ['htmlmin']);
+    gulp.watch('src/jade/*.jade', ['jade']);
     gulp.watch('src/fonts/**', ['fontcopy']);
 });
 
