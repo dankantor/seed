@@ -48,7 +48,7 @@ gulp.task('less', function(){
             l.end();
         }
     );
-    .src('./src/less/index.less')
+    gulp.src('./src/less/index.less')
         .pipe(l)
         .pipe(gulp.dest('./build/css'));
     }    
@@ -66,29 +66,9 @@ gulp.task('imagemin', function(){
 
 // build regular html
 // put in build folder
-gulp.task('html', function() {
-    if(gutil.env.project){
-        gulp.src('src/' + gutil.env.project + '/html/**')
-            .pipe(gulp.dest('./build/' + gutil.env.project));
-    }
-    else{
-        gulp.src("")
-            .pipe(notify({
-                message: "Please provide a project!"
-        }));
-    }
-});
-
-// minify html
-// put it in build folder
-gulp.task('htmlmin', function(){
-    gulp.src('./src/html/**')
-    .pipe(htmlmin(
-        {
-            'collapseWhitespace': true
-        }
-    ))
-    .pipe(gulp.dest('./build'))
+gulp.task('html', function(){
+    gulp.src('src/html/**')
+        .pipe(gulp.dest('./build/'));
 });
 
 // build jade into html
